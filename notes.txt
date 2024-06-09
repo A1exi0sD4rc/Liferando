@@ -1,0 +1,4 @@
+Liferando
+
+overflow-hidden -> nie auf body, extra div um getroffenen Bereich -> Problembehebung Web Device-Tool
+Slider statt add und remove -> toggle probieren

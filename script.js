@@ -103,8 +103,8 @@ let dishes = [
     }
 ];
 let cart = [];
-let orderStatus = 'deliver';
-let sliderStatus = 'forward';
+let orderDeliver = true;
+let sliderStatus = true;
 let totalBill = 0;
 let mediaStatus = false;
 let soupDnone = false;
@@ -156,31 +156,31 @@ function changeSlider() {
 
 
 function moveSliderWithMedia(salad, burger, soup, sideDish) {
-    if (sliderStatus == 'forward') {
+    if (sliderStatus == true) {
         salad.classList.add('d-none');
         burger.classList.add('d-none');
         soup.classList.remove('d-none');
         sideDish.classList.remove('d-none');
-        sliderStatus = 'back';
+        sliderStatus = false;
     } else {
         salad.classList.remove('d-none');
         burger.classList.remove('d-none');
         soup.classList.add('d-none');
         sideDish.classList.add('d-none');
-        sliderStatus = 'forward';
+        sliderStatus = true;
     }
 }
 
 
 function moveSliderWithoutMedia(salad, sideDish) {
-    if (sliderStatus == 'forward') {
+    if (sliderStatus == true) {
         salad.classList.add('d-none');
         sideDish.classList.remove('d-none');
-        sliderStatus = 'back';
+        sliderStatus = false;
     } else {
         salad.classList.remove('d-none');
         sideDish.classList.add('d-none');
-        sliderStatus = 'forward';
+        sliderStatus = true;
     }
 }
 
@@ -189,10 +189,10 @@ function orderVariant() {
     let slider = document.getElementById('slyder');
     let orderOption = document.getElementById('deliver-pickup');
 
-    if (orderStatus == "deliver") {
+    if (orderDeliver == true) {
         slider.style = 'transform: translateX(100%);';
         slider.innerHTML =/*html*/`<img src="./img/bag_green.svg">Abholung<br>ab 17:15`;
-        orderStatus = "pickup";
+        orderDeliver = false;
         orderOption.innerHTML =/*html*/`Residenzstraße 59, 13409 Berlin`;
     } else {
         movedSlider(orderOption, slider);
@@ -204,7 +204,7 @@ function orderVariant() {
 function movedSlider(orderOption, slider) {
     slider.style = 'transform: translateX(0%);';
     slider.innerHTML =/*html*/`<img src="./img/bike_green.svg">Lieferung<br>ab 17:15`;
-    orderStatus = "deliver";
+    orderDeliver = true;
     orderOption.innerHTML =/*html*/`
         <div>
             <span>Min. 20.00 €</span>
@@ -235,10 +235,10 @@ function addToCart(dishName, dishprice) {
 
 function addAmount(status, i) {
     if (status == true) {
-        cart[i]['amount'] += 1;
+        cart[i]['amount'] ++;
     } else {
         if (cart[i]['amount'] > 1) {
-            cart[i]['amount'] -= 1;
+            cart[i]['amount'] --;
         } else {
             cart.splice(i, 1);
         }
@@ -267,7 +267,7 @@ function calculateBill() {
 
 function renderBill(deliverCost, subtotal, total) {
     document.getElementById('calculator').innerHTML = '';
-    if (orderStatus == 'deliver') {
+    if (orderDeliver == true) {
         total += deliverCost;
         document.getElementById('calculator').innerHTML =/*html*/`
         Lieferkosten: ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(deliverCost)} <br>
@@ -287,7 +287,7 @@ function sendOrder() {
     let orderedDish = document.getElementById('ordered-content');
     let form = document.getElementById('order-form');
 
-    if (orderStatus == 'deliver' && totalBill <= 20) {
+    if (orderDeliver == true && totalBill <= 20) {
         alert('Kein aussreichender Mindestbestellwert. Mindestens 20€!')
     } else {
         renderSendOrder(orderedDish, form);
