@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liferdude</title>
+    <link rel="icon" type="image/png" href="./img/Logo_2.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="renderHTML.js"></script>
+</head>
+
+<body id="body" class="overflow-x" onload="render()" onresize="checkMedia()">
+    <header class="d-flex-header">
+        <div class="back-to-site">
+            <a class="logo" href="./index.html"></a>
+            <a class="previous-site" href="./index.html"></a>
+        </div>
+        <a class="adress" href="https://maps.app.goo.gl/jfk3wwHeEbm9JBpP8">Bahnhofstraße 10</a>
+        <div>
+            <img class="menu-bars" src="./img/menu.svg">
+        </div>
+    </header>
+    <main>
+        <div>
+            <section class="site-content">
+                <div class="restaurant-design">
+                    <img class="restaurant-img" src="./img/bg-img_2.jpg">
+                    <img class="restaurant-logo" src="./img/logo_3.png">
+                    <div class="section-formatter">
+                        <h2>The Serveral Favors</h2>
+                        <span class="rating">4.3</span>
+                        <div id="deliver-pickup">
+                            <div>
+                                <span>Min. 20.00 €</span>
+                                <span class="min-pick-up">1.50 €</span>
+                            </div>
+                        </div>
+                        <div class="seperator-horizontal"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dish-selection-container site-content">
+                <div id="dish-slider" class="dish-selection"></div>
+            </section>
+
+            <section class="site-content">
+                <div id="dish-list"></div>
+                <a href="#cart" id="open-cart" class="open-cart d-none" onclick="openOverlay()"></a>
+            </section>
+        </div>
+
+        <section id="cart" class="cart"></section>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="">Jobs</a>
+            <a href="">AGB</a>
+            <a href="">Datenschutz</a>
+            <a href="">Impressum</a>
+        </div>
+        <div>
+            2024 Liferdude.de
+        </div>
+    </footer>
+</body>
+
+</html>
